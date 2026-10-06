@@ -1,0 +1,175 @@
+{
+  "architecture": "react",
+  "scenario": "S05",
+  "mode": "offline",
+  "request": {
+    "request_id": "S05",
+    "origin": "SGN",
+    "destination": "HAN",
+    "departure_date": "2026-10-15",
+    "passenger_count": 1,
+    "passenger_name": "Hoang Khoi Nguyen",
+    "max_budget": 2000000,
+    "cabin_class": "ECONOMY",
+    "airline": null,
+    "selection_policy": "cheapest",
+    "selected_flight": null
+  },
+  "status": "NEED_USER_CONFIRMATION",
+  "booking_id": null,
+  "bookings": [],
+  "trace": [
+    {
+      "action": "search_flights",
+      "arguments": {
+        "origin": "SGN",
+        "destination": "HAN",
+        "departure_date": "2026-10-15",
+        "cabin_class": "ECONOMY",
+        "airline": null,
+        "max_budget": 2000000
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "ok",
+        "count": 3,
+        "flights": [
+          {
+            "flight_id": "VN210",
+            "airline": "Vietnam Airlines",
+            "origin": "SGN",
+            "destination": "HAN",
+            "departure_date": "2026-10-15",
+            "departure_time": "06:00",
+            "arrival_time": "08:15",
+            "cabin_class": "ECONOMY",
+            "base_price": 1800000,
+            "available_seats": 5,
+            "status": "SCHEDULED"
+          },
+          {
+            "flight_id": "VJ120",
+            "airline": "Vietjet Air",
+            "origin": "SGN",
+            "destination": "HAN",
+            "departure_date": "2026-10-15",
+            "departure_time": "09:30",
+            "arrival_time": "11:45",
+            "cabin_class": "ECONOMY",
+            "base_price": 1200000,
+            "available_seats": 12,
+            "status": "SCHEDULED"
+          },
+          {
+            "flight_id": "QH202",
+            "airline": "Bamboo Airways",
+            "origin": "SGN",
+            "destination": "HAN",
+            "departure_date": "2026-10-15",
+            "departure_time": "14:00",
+            "arrival_time": "16:15",
+            "cabin_class": "ECONOMY",
+            "base_price": 1500000,
+            "available_seats": 8,
+            "status": "SCHEDULED"
+          }
+        ]
+      }
+    },
+    {
+      "action": "get_flight_details",
+      "arguments": {
+        "flight_id": "VJ120"
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "ok",
+        "flight": {
+          "flight_id": "VJ120",
+          "airline": "Vietjet Air",
+          "origin": "SGN",
+          "destination": "HAN",
+          "departure_date": "2026-10-15",
+          "departure_time": "09:30",
+          "arrival_time": "11:45",
+          "cabin_class": "ECONOMY",
+          "base_price": 1200000,
+          "available_seats": 12,
+          "status": "SCHEDULED"
+        }
+      }
+    },
+    {
+      "action": "check_seat_availability",
+      "arguments": {
+        "flight_id": "VJ120",
+        "passenger_count": 1
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "ok",
+        "available": true,
+        "flight_id": "VJ120",
+        "requested_seats": 1,
+        "available_seats": 12
+      }
+    },
+    {
+      "action": "calculate_price",
+      "arguments": {
+        "flight_id": "VJ120",
+        "passenger_count": 1
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "ok",
+        "flight_id": "VJ120",
+        "airline": "Vietjet Air",
+        "unit_price": 1200000,
+        "passenger_count": 1,
+        "total_price": 1200000
+      }
+    },
+    {
+      "action": "request_confirmation",
+      "arguments": {
+        "flight_id": "VJ120",
+        "passenger_count": 1,
+        "total_price": 1200000,
+        "request_id": "S05"
+      },
+      "harness_decision": "USER",
+      "observation": {
+        "answer": null
+      }
+    }
+  ],
+  "handoff": {
+    "stop_reason": "NEED_USER_CONFIRMATION",
+    "da_thu": [
+      "search_flights",
+      "get_flight_details",
+      "check_seat_availability",
+      "calculate_price",
+      "request_confirmation"
+    ],
+    "trang_thai": {
+      "selected_flight": "VJ120",
+      "quote": {
+        "flight_id": "VJ120",
+        "passenger_count": 1,
+        "total_price": 1200000,
+        "request_id": "S05"
+      },
+      "booking_id": null,
+      "bookings": []
+    },
+    "cau_hoi_cho_nguoi": "Xác nhận đặt vé với đúng chuyến, số khách và tổng tiền trên?"
+  },
+  "metrics": {
+    "tool_calls": 4,
+    "model_calls": 5,
+    "replans": 0,
+    "elapsed_ms": 74.58870000027673
+  }
+}

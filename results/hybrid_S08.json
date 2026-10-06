@@ -1,0 +1,420 @@
+{
+  "architecture": "hybrid",
+  "scenario": "S08",
+  "mode": "offline",
+  "request": {
+    "request_id": "S08",
+    "origin": "SGN",
+    "destination": "HAN",
+    "departure_date": "2026-10-15",
+    "passenger_count": 1,
+    "passenger_name": "Hoang Khoi Nguyen",
+    "max_budget": 2000000,
+    "cabin_class": "ECONOMY",
+    "airline": null,
+    "selection_policy": "cheapest",
+    "selected_flight": null
+  },
+  "status": "COMPLETED",
+  "booking_id": "BK001",
+  "bookings": [
+    {
+      "booking_id": "BK001",
+      "flight_id": "QH202",
+      "airline": "Bamboo Airways",
+      "origin": "SGN",
+      "destination": "HAN",
+      "departure_date": "2026-10-15",
+      "departure_time": "14:00",
+      "cabin_class": "ECONOMY",
+      "passenger_name": "Hoang Khoi Nguyen",
+      "passenger_count": 1,
+      "unit_price": 1500000,
+      "total_price": 1500000,
+      "status": "CONFIRMED",
+      "request_id": "S08",
+      "request_fingerprint": "4e65f9dc51d3218a883fd72683770606b7279275cd477a999511e06c45e9438b"
+    }
+  ],
+  "trace": [
+    {
+      "action": "planner",
+      "arguments": {
+        "replan": 0
+      },
+      "harness_decision": "VALID_PLAN",
+      "observation": {
+        "steps": [
+          {
+            "action": "search_flights"
+          },
+          {
+            "action": "select_candidate"
+          },
+          {
+            "action": "get_flight_details"
+          },
+          {
+            "action": "check_seat_availability"
+          },
+          {
+            "action": "calculate_price"
+          },
+          {
+            "action": "request_confirmation"
+          },
+          {
+            "action": "book_flight"
+          },
+          {
+            "action": "verify_completion"
+          }
+        ]
+      }
+    },
+    {
+      "action": "search_flights",
+      "arguments": {
+        "origin": "SGN",
+        "destination": "HAN",
+        "departure_date": "2026-10-15",
+        "cabin_class": "ECONOMY",
+        "airline": null,
+        "max_budget": 2000000
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "ok",
+        "count": 3,
+        "flights": [
+          {
+            "flight_id": "VN210",
+            "airline": "Vietnam Airlines",
+            "origin": "SGN",
+            "destination": "HAN",
+            "departure_date": "2026-10-15",
+            "departure_time": "06:00",
+            "arrival_time": "08:15",
+            "cabin_class": "ECONOMY",
+            "base_price": 1800000,
+            "available_seats": 5,
+            "status": "SCHEDULED"
+          },
+          {
+            "flight_id": "VJ120",
+            "airline": "Vietjet Air",
+            "origin": "SGN",
+            "destination": "HAN",
+            "departure_date": "2026-10-15",
+            "departure_time": "09:30",
+            "arrival_time": "11:45",
+            "cabin_class": "ECONOMY",
+            "base_price": 1200000,
+            "available_seats": 12,
+            "status": "SCHEDULED"
+          },
+          {
+            "flight_id": "QH202",
+            "airline": "Bamboo Airways",
+            "origin": "SGN",
+            "destination": "HAN",
+            "departure_date": "2026-10-15",
+            "departure_time": "14:00",
+            "arrival_time": "16:15",
+            "cabin_class": "ECONOMY",
+            "base_price": 1500000,
+            "available_seats": 8,
+            "status": "SCHEDULED"
+          }
+        ]
+      }
+    },
+    {
+      "action": "get_flight_details",
+      "arguments": {
+        "flight_id": "VJ120"
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "ok",
+        "flight": {
+          "flight_id": "VJ120",
+          "airline": "Vietjet Air",
+          "origin": "SGN",
+          "destination": "HAN",
+          "departure_date": "2026-10-15",
+          "departure_time": "09:30",
+          "arrival_time": "11:45",
+          "cabin_class": "ECONOMY",
+          "base_price": 1200000,
+          "available_seats": 12,
+          "status": "SCHEDULED"
+        }
+      }
+    },
+    {
+      "action": "check_seat_availability",
+      "arguments": {
+        "flight_id": "VJ120",
+        "passenger_count": 1
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "ok",
+        "available": true,
+        "flight_id": "VJ120",
+        "requested_seats": 1,
+        "available_seats": 12
+      }
+    },
+    {
+      "action": "calculate_price",
+      "arguments": {
+        "flight_id": "VJ120",
+        "passenger_count": 1
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "ok",
+        "flight_id": "VJ120",
+        "airline": "Vietjet Air",
+        "unit_price": 1200000,
+        "passenger_count": 1,
+        "total_price": 1200000
+      }
+    },
+    {
+      "action": "request_confirmation",
+      "arguments": {
+        "flight_id": "VJ120",
+        "passenger_count": 1,
+        "total_price": 1200000,
+        "request_id": "S08"
+      },
+      "harness_decision": "USER",
+      "observation": {
+        "answer": true
+      }
+    },
+    {
+      "action": "book_flight",
+      "arguments": {
+        "flight_id": "VJ120",
+        "passenger_count": 1,
+        "passenger_name": "Hoang Khoi Nguyen",
+        "total_price": 1200000
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "error",
+        "error_code": "SEATS_NOT_AVAILABLE",
+        "message": "Không đủ ghế trống. Còn lại: 0, yêu cầu: 1."
+      }
+    },
+    {
+      "action": "planner",
+      "arguments": {
+        "replan": 1
+      },
+      "harness_decision": "VALID_PLAN",
+      "observation": {
+        "steps": [
+          {
+            "action": "search_flights"
+          },
+          {
+            "action": "select_candidate"
+          },
+          {
+            "action": "get_flight_details"
+          },
+          {
+            "action": "check_seat_availability"
+          },
+          {
+            "action": "calculate_price"
+          },
+          {
+            "action": "request_confirmation"
+          },
+          {
+            "action": "book_flight"
+          },
+          {
+            "action": "verify_completion"
+          }
+        ]
+      }
+    },
+    {
+      "action": "search_flights",
+      "arguments": {
+        "origin": "SGN",
+        "destination": "HAN",
+        "departure_date": "2026-10-15",
+        "cabin_class": "ECONOMY",
+        "airline": null,
+        "max_budget": 2000000
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "ok",
+        "count": 3,
+        "flights": [
+          {
+            "flight_id": "VN210",
+            "airline": "Vietnam Airlines",
+            "origin": "SGN",
+            "destination": "HAN",
+            "departure_date": "2026-10-15",
+            "departure_time": "06:00",
+            "arrival_time": "08:15",
+            "cabin_class": "ECONOMY",
+            "base_price": 1800000,
+            "available_seats": 5,
+            "status": "SCHEDULED"
+          },
+          {
+            "flight_id": "VJ120",
+            "airline": "Vietjet Air",
+            "origin": "SGN",
+            "destination": "HAN",
+            "departure_date": "2026-10-15",
+            "departure_time": "09:30",
+            "arrival_time": "11:45",
+            "cabin_class": "ECONOMY",
+            "base_price": 1200000,
+            "available_seats": 0,
+            "status": "SCHEDULED"
+          },
+          {
+            "flight_id": "QH202",
+            "airline": "Bamboo Airways",
+            "origin": "SGN",
+            "destination": "HAN",
+            "departure_date": "2026-10-15",
+            "departure_time": "14:00",
+            "arrival_time": "16:15",
+            "cabin_class": "ECONOMY",
+            "base_price": 1500000,
+            "available_seats": 8,
+            "status": "SCHEDULED"
+          }
+        ]
+      }
+    },
+    {
+      "action": "get_flight_details",
+      "arguments": {
+        "flight_id": "QH202"
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "ok",
+        "flight": {
+          "flight_id": "QH202",
+          "airline": "Bamboo Airways",
+          "origin": "SGN",
+          "destination": "HAN",
+          "departure_date": "2026-10-15",
+          "departure_time": "14:00",
+          "arrival_time": "16:15",
+          "cabin_class": "ECONOMY",
+          "base_price": 1500000,
+          "available_seats": 8,
+          "status": "SCHEDULED"
+        }
+      }
+    },
+    {
+      "action": "check_seat_availability",
+      "arguments": {
+        "flight_id": "QH202",
+        "passenger_count": 1
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "ok",
+        "available": true,
+        "flight_id": "QH202",
+        "requested_seats": 1,
+        "available_seats": 8
+      }
+    },
+    {
+      "action": "calculate_price",
+      "arguments": {
+        "flight_id": "QH202",
+        "passenger_count": 1
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "ok",
+        "flight_id": "QH202",
+        "airline": "Bamboo Airways",
+        "unit_price": 1500000,
+        "passenger_count": 1,
+        "total_price": 1500000
+      }
+    },
+    {
+      "action": "request_confirmation",
+      "arguments": {
+        "flight_id": "QH202",
+        "passenger_count": 1,
+        "total_price": 1500000,
+        "request_id": "S08"
+      },
+      "harness_decision": "USER",
+      "observation": {
+        "answer": true
+      }
+    },
+    {
+      "action": "book_flight",
+      "arguments": {
+        "flight_id": "QH202",
+        "passenger_count": 1,
+        "passenger_name": "Hoang Khoi Nguyen",
+        "total_price": 1500000
+      },
+      "harness_decision": "ALLOW",
+      "observation": {
+        "status": "CONFIRMED",
+        "booking_id": "BK001",
+        "booking": {
+          "booking_id": "BK001",
+          "flight_id": "QH202",
+          "airline": "Bamboo Airways",
+          "origin": "SGN",
+          "destination": "HAN",
+          "departure_date": "2026-10-15",
+          "departure_time": "14:00",
+          "cabin_class": "ECONOMY",
+          "passenger_name": "Hoang Khoi Nguyen",
+          "passenger_count": 1,
+          "unit_price": 1500000,
+          "total_price": 1500000,
+          "status": "CONFIRMED"
+        }
+      }
+    },
+    {
+      "action": "verify_completion",
+      "arguments": {
+        "booking_id": "BK001"
+      },
+      "harness_decision": "PASS",
+      "observation": {
+        "completed": true
+      }
+    }
+  ],
+  "handoff": null,
+  "metrics": {
+    "tool_calls": 10,
+    "model_calls": 2,
+    "replans": 1,
+    "elapsed_ms": 64.10390000019106
+  }
+}

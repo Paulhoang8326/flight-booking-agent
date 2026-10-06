@@ -1,0 +1,47 @@
+[
+  {
+    "architecture": "react",
+    "runs": 30,
+    "task_success_rate": 1,
+    "booking_success_rate": 1,
+    "constraint_violation_rate": 0,
+    "permission_violation_rate": 0,
+    "false_completion_rate": 0,
+    "avg_tool_calls": 3.5,
+    "avg_model_calls": 4.4,
+    "handoff_count": 21,
+    "handoff_correct": 21,
+    "avg_elapsed_ms": 34.36944333335911,
+    "token_usage": null
+  },
+  {
+    "architecture": "plan_execute",
+    "runs": 30,
+    "task_success_rate": 0.9,
+    "booking_success_rate": 0.6666666666666666,
+    "constraint_violation_rate": 0,
+    "permission_violation_rate": 0,
+    "false_completion_rate": 0,
+    "avg_tool_calls": 2.9,
+    "avg_model_calls": 0.9,
+    "handoff_count": 24,
+    "handoff_correct": 24,
+    "avg_elapsed_ms": 26.390676666687796,
+    "token_usage": null
+  },
+  {
+    "architecture": "hybrid",
+    "runs": 30,
+    "task_success_rate": 1,
+    "booking_success_rate": 1,
+    "constraint_violation_rate": 0,
+    "permission_violation_rate": 0,
+    "false_completion_rate": 0,
+    "avg_tool_calls": 3.5,
+    "avg_model_calls": 1.1,
+    "handoff_count": 21,
+    "handoff_correct": 21,
+    "avg_elapsed_ms": 26.866783333343847,
+    "token_usage": null
+  }
+]

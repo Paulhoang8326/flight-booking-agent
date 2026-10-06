@@ -1,0 +1,39 @@
+{
+  "architecture": "react",
+  "scenario": "S01",
+  "mode": "llm",
+  "request": {
+    "request_id": "S01",
+    "origin": "SGN",
+    "destination": "HAN",
+    "departure_date": "2026-10-15",
+    "passenger_count": 1,
+    "passenger_name": "Hoang Khoi Nguyen",
+    "max_budget": 2000000,
+    "cabin_class": "ECONOMY",
+    "airline": null,
+    "selection_policy": "cheapest",
+    "selected_flight": null
+  },
+  "status": "EXECUTION_ERROR",
+  "booking_id": null,
+  "bookings": [],
+  "trace": [],
+  "handoff": {
+    "stop_reason": "EXECUTION_ERROR",
+    "da_thu": [],
+    "trang_thai": {
+      "selected_flight": null,
+      "quote": null,
+      "booking_id": null,
+      "bookings": []
+    },
+    "cau_hoi_cho_nguoi": "LLM mode needs OPENAI_API_KEY in project .env"
+  },
+  "metrics": {
+    "tool_calls": 0,
+    "model_calls": 0,
+    "replans": 0,
+    "elapsed_ms": 1461.780500000259
+  }
+}

@@ -1,0 +1,4 @@
+architecture,runs,task_success_rate,booking_success_rate,constraint_violation_rate,permission_violation_rate,false_completion_rate,avg_tool_calls,avg_model_calls,handoff_count,handoff_correct,avg_elapsed_ms,token_usage
+react,30,1,1,0,0,0,3.5,4.4,21,21,34.36944333335911,
+plan_execute,30,0.9,0.6666666666666666,0,0,0,2.9,0.9,24,24,26.390676666687796,
+hybrid,30,1,1,0,0,0,3.5,1.1,21,21,26.866783333343847,
